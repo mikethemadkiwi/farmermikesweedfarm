@@ -38,7 +38,8 @@ end
 drawOnScreen3D = function(coords, text, size)
     local onScreen, x, y = World3dToScreen2d(coords.x, coords.y, coords.z)
     local camCoords      = GetGameplayCamCoords()
-    local dist           = GetDistanceBetweenCoords(camCoords.x, camCoords.y, camCoords.z, coords.x, coords.y, coords.z, 1)
+    local aboveZ = coords.z + 1
+    local dist           = GetDistanceBetweenCoords(camCoords.x, camCoords.y, camCoords.z, coords.x, coords.y, aboveZ, 1)
     local size           = size  
     if size == nil then
       size = 1
@@ -101,7 +102,10 @@ Citizen.CreateThread(function()
                     SetEntityCoords(MyPlants[j].Obj, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false, true)
                     SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
                     FreezeEntityPosition(MyPlants[j].Obj, true)
-                    drawOnScreen3D(MyPlants[j].propPos, 'Growth: '..MyPlants[j].growPercent..' Type: ['..MyPlants[j].propHash..']', 0.5)
+
+                    ---
+                    local perc = Math.floor(MyPlants[j].growPercent * 100)
+                    drawOnScreen3D(MyPlants[j].propPos, 'Growth: '..perc..'% Type: ['..MyPlants[j].propHash..']', 0.5)
                 end
             end	
         end
