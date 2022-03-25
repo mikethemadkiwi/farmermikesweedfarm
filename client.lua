@@ -104,7 +104,7 @@ Citizen.CreateThread(function()
                     FreezeEntityPosition(MyPlants[j].Obj, true)
 
                     ---
-                    local perc = Math.floor(MyPlants[j].growPercent * 100)
+                    local perc = math.floor(MyPlants[j].growPercent * 100)
                     drawOnScreen3D(MyPlants[j].propPos, 'Growth: '..perc..'% Type: ['..MyPlants[j].propHash..']', 0.5)
                 end
             end	
