@@ -95,8 +95,8 @@ Citizen.CreateThread(function()
             for j=1, #MyPlants do
                 if MyPlants[j].Obj ~= nil then
                     if MyPlants[j].growPercent <= 1.0 then
-                        local newhieght = MyPlants[j].propPos.z + 0.000001
-                        MyPlants[j].growPercent = MyPlants[j].growPercent + 0.000001
+                        local newhieght = MyPlants[j].propPos.z + 0.0001
+                        MyPlants[j].growPercent = MyPlants[j].growPercent + 0.0001
                         MyPlants[j].propPos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, newhieght)
                     end
                     SetEntityCoords(MyPlants[j].Obj, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false, true)
