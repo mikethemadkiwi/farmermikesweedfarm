@@ -66,7 +66,8 @@ Citizen.CreateThread(function()
         if NetworkIsPlayerActive(PlayerId()) then
             for j=1, #MyPlants do
                 if MyPlants[j].Obj ~= nil then
-                    MyPlants[j].propPos.z = MyPlants[j].propPos.z + 0.001
+                    local newhieght = MyPlants[j].propPos.z + 0.001
+                    MyPlants[j].propPos = vector3(MyPlants[j].propPos.x,MyPlants[j].propPos.y, newhieght)
                     SetEntityCoords(MyPlants[j].Obj, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false, true)
                     SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
                     FreezeEntityPosition(MyPlants[j].Obj, true)
