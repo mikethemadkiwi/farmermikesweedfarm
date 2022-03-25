@@ -101,7 +101,7 @@ Citizen.CreateThread(function()
                     SetEntityCoords(MyPlants[j].Obj, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false, true)
                     SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
                     FreezeEntityPosition(MyPlants[j].Obj, true)
-                    drawOnScreen3D(MyPlants[j].propPos, 'Growth: '..MyPlants[j].growPercent..' Type: ['..MyPlants[j].propName..']', 0.5)
+                    drawOnScreen3D(MyPlants[j].propPos, 'Growth: '..MyPlants[j].growPercent..' Type: ['..MyPlants[j].propHash..']', 0.5)
                 end
             end	
         end
