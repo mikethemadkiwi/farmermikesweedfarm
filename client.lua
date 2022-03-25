@@ -108,7 +108,8 @@ Citizen.CreateThread(function()
                     local plantDistance = #(pCoords - MyPlants[j].propPos)
                     if plantDistance < 2 then
                         local perc = math.floor(MyPlants[j].growPercent * 100)
-                        drawOnScreen3D(MyPlants[j].propPos, 'Growth: '..perc..'% Type: ['..MyPlants[j].propHash..']', 0.5)
+                        local textpos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z+1.5)
+                        drawOnScreen3D(textpos, 'Growth: '..perc..'% Type: ['..MyPlants[j].propHash..']', 0.5)
                     end
                 end
             end	
