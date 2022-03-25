@@ -104,8 +104,12 @@ Citizen.CreateThread(function()
                     FreezeEntityPosition(MyPlants[j].Obj, true)
 
                     ---
-                    local perc = math.floor(MyPlants[j].growPercent * 100)
-                    drawOnScreen3D(MyPlants[j].propPos, 'Growth: '..perc..'% Type: ['..MyPlants[j].propHash..']', 0.5)
+                    local pCoords = GetEntityCoords(PlayerPedId())
+                    local plantDistance = #(pCoords - MyPlants[j].propPos)
+                    if plantDistance < 2 then
+                        local perc = math.floor(MyPlants[j].growPercent * 100)
+                        drawOnScreen3D(MyPlants[j].propPos, 'Growth: '..perc..'% Type: ['..MyPlants[j].propHash..']', 0.5)
+                    end
                 end
             end	
         end
