@@ -46,6 +46,13 @@ Citizen.CreateThread(function()
     end
 end)
 ---------------------------------
+AddEventHandler("onResourceStop", function(resourceName)
+    if GetCurrentResourceName() == resourceName then
+        for j=1, #MyPlants do
+            DeleteObject(MyPlants[j])        
+        end
+    end
+end)
 -- Citizen.CreateThread(function()
 --     while true do 
 --         Citizen.Wait(0)
