@@ -14,8 +14,11 @@ weedObjs.pallet = {propHash = 243282660, propName = prop_weed_pallet}
 weedObjs.bottle = {propHash = 671777952, propName = prop_weed_bottle}
 --
 MyPlants = {
-    {propHash = 452618762, propPos = vector3(-595.756,-187.858, 36.806)},
-    {propHash = -305885281, propPos = vector3(-598.756,-189.858, 36.806)}
+    -- {propHash = 452618762, propPos = vector3(-595.756,-187.858, 36.806)},    
+    -- {propHash = -305885281, propPos = vector3(-598.756,-189.858, 36.806)}
+    
+    {propHash = 452618762, propPos = vector3(-595.756,-187.858, 36.306)},    
+    {propHash = -305885281, propPos = vector3(-598.756,-189.858, 36.306)}
 }
 MyPlantBlips = {}
 PlantStrain = {}
