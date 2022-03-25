@@ -66,7 +66,7 @@ Citizen.CreateThread(function()
         if NetworkIsPlayerActive(PlayerId()) then
             for j=1, #MyPlants do
                 if MyPlants[j].Obj ~= nil then
-                    if MyPlants[j].growPercent <= 99 then
+                    if MyPlants[j].growPercent <= 0.9999 then
                         local newhieght = MyPlants[j].propPos.z + 0.0001
                         MyPlants[j].growPercent = MyPlants[j].growPercent + 0.0001
                         MyPlants[j].propPos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, newhieght)
