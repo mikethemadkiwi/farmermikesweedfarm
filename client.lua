@@ -49,7 +49,7 @@ end)
 AddEventHandler("onResourceStop", function(resourceName)
     if GetCurrentResourceName() == resourceName then
         for j=1, #MyPlants do
-            DeleteObject(MyPlants[j])        
+            DeleteObject(MyPlants[j].Obj)        
         end
     end
 end)
