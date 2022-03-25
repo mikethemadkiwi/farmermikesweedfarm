@@ -17,8 +17,8 @@ MyPlants = {
     -- {propHash = 452618762, propPos = vector3(-595.756,-187.858, 36.806)},    
     -- {propHash = -305885281, propPos = vector3(-598.756,-189.858, 36.806)}
     
-    {propHash = 452618762, propPos = vector3(-595.756,-187.858, 36.306)},    
-    {propHash = -305885281, propPos = vector3(-598.756,-189.858, 36.306)}
+    {propHash = 452618762, propPos = vector3(-595.756,-187.858, 35.806)},    
+    {propHash = -305885281, propPos = vector3(-598.756,-189.858, 35.806)}
 }
 MyPlantBlips = {}
 PlantStrain = {}
