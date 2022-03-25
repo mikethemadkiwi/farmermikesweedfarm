@@ -14,11 +14,16 @@ weedObjs.pallet = {propHash = 243282660, propName = prop_weed_pallet}
 weedObjs.bottle = {propHash = 671777952, propName = prop_weed_bottle}
 --
 MyPlants = {
-    -- {propHash = 452618762, propPos = vector3(-595.756,-187.858, 36.806)},    
-    -- {propHash = -305885281, propPos = vector3(-598.756,-189.858, 36.806)}
-    
-    {propHash = 452618762, propPos = vector3(-595.756,-187.858, 35.806)},    
-    {propHash = -305885281, propPos = vector3(-598.756,-189.858, 35.806)}
+    {
+        propHash = 452618762, 
+        propPos = vector3(-595.756,-187.858, 35.806),
+        growPercent = 0
+    },    
+    {
+        propHash = -305885281, 
+        propPos = vector3(-598.756,-189.858, 35.806),
+        growPercent = 0
+    }
 }
 MyPlantBlips = {}
 PlantStrain = {}
@@ -53,15 +58,23 @@ AddEventHandler("onResourceStop", function(resourceName)
         end
     end
 end)
--- Citizen.CreateThread(function()
---     while true do 
---         Citizen.Wait(0)
---         if NetworkIsPlayerActive(PlayerId()) then
-
-	
---         end
---     end
--- end)
+---------------------------------
+-- Plant Growth
+Citizen.CreateThread(function()
+    while true do 
+        Citizen.Wait(0)
+        if NetworkIsPlayerActive(PlayerId()) then
+            for j=1, #MyPlants do
+                if MyPlants[j].Obj ~= nil then
+                    MyPlants[j].propPos.z = MyPlants[j].propPos.z + 0.001
+                    SetEntityCoords(MyPlants[j].Obj, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false, true)
+                    SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
+                    FreezeEntityPosition(MyPlants[j].Obj, true)
+                end
+            end	
+        end
+    end
+end)
 -- Plant Blips
         -- playerBikeBlip = AddBlipForEntity(playerBike[1])
         -- SetBlipAsFriendly(playerBikeBlip, true)
