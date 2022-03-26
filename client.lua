@@ -13,36 +13,7 @@ weedObjs.brick = {propHash = -1688127, propName = prop_weed_block_01}
 weedObjs.pallet = {propHash = 243282660, propName = prop_weed_pallet}
 weedObjs.bottle = {propHash = 671777952, propName = prop_weed_bottle}
 --
-MyPlants = {
-    {
-        propHash = 452618762, 
-        propPos = vector3(-595.756,-187.858, 35.806),
-        genetics = {
-            gender = "xx"
-        },
-        growPercent = 0,
-        budPercent = 0,
-        N = 0, -- 1 N (+1) > 0.01 Tox
-        P = 0,
-        K = 0,
-        DeTox = 0, --charcoal,  eggshell, calcium
-        Toxicity = 0
-    },    
-    {
-        propHash = -305885281, 
-        propPos = vector3(-598.756,-189.858, 35.806),
-        genetics = {
-            gender = "xy"
-        },
-        growPercent = 0,
-        budPercent = 0,
-        N = 0, -- 1 N (+1) > 0.01 Tox
-        P = 0,
-        K = 0,
-        DeTox = 0, --charcoal,  eggshell, calcium
-        Toxicity = 0
-    }
-}
+MyPlants = {}
 MyPlantBlips = {}
 PlantStrain = {}
 FreeRangePlants = {}
@@ -137,14 +108,14 @@ Citizen.CreateThread(function()
     end
 end)
 
-
+RegisterNetEvent('fmwf:plist')
+AddEventHandler('fmwf:plist', function(plist)    
+   MyPlants = plist
+end)
 
 
 RegisterCommand('plantme', function(source, args) 
-   local pCoords = GetEntityCoords(PlayerPedId())
-   local sex = math.random(0,1)
-   print(sex)
-   TriggerServerEvent('fmwf:canhazplant', pCoords, sex)
+   TriggerServerEvent('fmwf:canhazplant', GetEntityCoords(PlayerPedId()))
 end,false)
 
 -- Plant Blips
