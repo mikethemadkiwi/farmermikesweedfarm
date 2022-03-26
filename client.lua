@@ -124,8 +124,9 @@ end)
 
 RegisterCommand('plantme', function(source, args) 
     local pCoords = GetEntityCoords(PlayerPedId())
-    print(pCoords)
-   TriggerServerEvent('fmwf:canhazplant', pCoords)
+    local didWork, groundZ  = GetGroundZFor_3dCoord(pCoords[1],pCoords[2],pCoords[3],0)
+    local posonground = vector3(pCoords[1],pCoords[2], groundZ)
+   TriggerServerEvent('fmwf:canhazplant', posonground)
 end,false)
 
 -- Plant Blips
