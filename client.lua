@@ -19,13 +19,13 @@ MyPlants = {
         propPos = vector3(-595.756,-187.858, 35.806),
         genetics = {
             gender = female
-        }
+        },
         growPercent = 0,
         budPercent = 0,
         N = 0, -- 1 N (+1) > 0.01 Tox
         P = 0,
         K = 0,
-        DeTox = 0 --charcoal,  eggshell, calcium
+        DeTox = 0, --charcoal,  eggshell, calcium
         Toxicity = 0
     },    
     {
@@ -33,13 +33,13 @@ MyPlants = {
         propPos = vector3(-598.756,-189.858, 35.806),
         genetics = {
             gender = male
-        }
+        },
         growPercent = 0,
         budPercent = 0,
         N = 0, -- 1 N (+1) > 0.01 Tox
         P = 0,
         K = 0,
-        DeTox = 0 --charcoal,  eggshell, calcium
+        DeTox = 0, --charcoal,  eggshell, calcium
         Toxicity = 0
     }
 }
