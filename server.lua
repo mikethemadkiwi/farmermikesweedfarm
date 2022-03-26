@@ -4,7 +4,7 @@ Plants = {}
 function CreatePlant(pSrc, pCoords)
     local plant = {}
     local sex = math.random(0,1)
-    if sex == 0 then
+    if sex == 1 then
         plant.propHash = 452618762
         plant.gender = "female"
     else
