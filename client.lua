@@ -136,6 +136,17 @@ Citizen.CreateThread(function()
         end
     end
 end)
+
+
+
+
+RegisterCommand('plantme', function(source, args) 
+   local pCoords = GetEntityCoords(PlayerPedId())
+   local sex = math.random(0,1
+   print(sex)
+   TriggerServerEvent('fmwf:canhazplant', pCoords, sex)
+end,false)
+
 -- Plant Blips
         -- playerBikeBlip = AddBlipForEntity(playerBike[1])
         -- SetBlipAsFriendly(playerBikeBlip, true)
