@@ -6,10 +6,10 @@ function CreatePlant(pSrc, pCoords)
     local sex = math.random(0,1)
     if sex == 0 then
         plant.propHash = 452618762
-        plant.gender = "xx"
+        plant.gender = "female"
     else
         plant.propHash = -305885281
-        plant.gender = "xy"
+        plant.gender = "male"
     end
     plant.propPos = pCoords
     plant.genetics = {}
