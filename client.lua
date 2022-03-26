@@ -111,6 +111,13 @@ end)
 RegisterNetEvent('fmwf:plist')
 AddEventHandler('fmwf:plist', function(plist)    
    MyPlants = plist
+   for j=1, #MyPlants do
+        if MyPlants[j].Obj == nil then
+            MyPlants[j].Obj = CreateObject(MyPlants[j].propHash, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false)
+            SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
+            FreezeEntityPosition(MyPlants[j].Obj, true)
+        end
+    end
 end)
 
 
