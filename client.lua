@@ -17,12 +17,30 @@ MyPlants = {
     {
         propHash = 452618762, 
         propPos = vector3(-595.756,-187.858, 35.806),
-        growPercent = 0
+        genetics = {
+            gender = female
+        }
+        growPercent = 0,
+        budPercent = 0,
+        N = 0, -- 1 N (+1) > 0.01 Tox
+        P = 0,
+        K = 0,
+        DeTox = 0 --charcoal,  eggshell, calcium
+        Toxicity = 0
     },    
     {
         propHash = -305885281, 
         propPos = vector3(-598.756,-189.858, 35.806),
-        growPercent = 0
+        genetics = {
+            gender = male
+        }
+        growPercent = 0,
+        budPercent = 0,
+        N = 0, -- 1 N (+1) > 0.01 Tox
+        P = 0,
+        K = 0,
+        DeTox = 0 --charcoal,  eggshell, calcium
+        Toxicity = 0
     }
 }
 MyPlantBlips = {}
@@ -94,22 +112,25 @@ Citizen.CreateThread(function()
         if NetworkIsPlayerActive(PlayerId()) then
             for j=1, #MyPlants do
                 if MyPlants[j].Obj ~= nil then
-                    if MyPlants[j].growPercent <= 1.0 then
-                        local newhieght = MyPlants[j].propPos.z + 0.0001
-                        MyPlants[j].growPercent = MyPlants[j].growPercent + 0.0001
-                        MyPlants[j].propPos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, newhieght)
-                    end
-                    SetEntityCoords(MyPlants[j].Obj, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false, true)
-                    SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
-                    FreezeEntityPosition(MyPlants[j].Obj, true)
-
                     ---
                     local plantDistance = #(GetEntityCoords(PlayerPedId()) - MyPlants[j].propPos)
                     if plantDistance < 2.5 then
                         local perc = math.floor(MyPlants[j].growPercent * 100)
-                        local textpos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z+1.5)
-                        drawOnScreen3D(textpos, 'Growth: '..perc..'% Type: ['..MyPlants[j].propHash..']', 0.5)
+                        local textpos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z+1.25)
+                        drawOnScreen3D(textpos, 'Cannabis '..MyPlants[j].genetics.gender..' Growth: '..perc..'% Type: ['..MyPlants[j].propHash..']', 0.5)
                     end
+                    ---                    
+                    if MyPlants[j].growPercent <= 1.0 then
+                        local newhieght = MyPlants[j].propPos.z + 0.000001
+                        MyPlants[j].growPercent = MyPlants[j].growPercent + 0.000001
+                        MyPlants[j].propPos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, newhieght)
+                    else
+
+                    end
+                    SetEntityCoords(MyPlants[j].Obj, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false, true)
+                    SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
+                    FreezeEntityPosition(MyPlants[j].Obj, true)
+                    ---
                 end
             end	
         end
