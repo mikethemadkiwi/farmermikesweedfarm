@@ -125,7 +125,8 @@ end)
 RegisterCommand('plantme', function(source, args) 
     local pCoords = GetEntityCoords(PlayerPedId())
     local didWork, groundZ  = GetGroundZFor_3dCoord(pCoords[1],pCoords[2],pCoords[3],0)
-    local posonground = vector3(pCoords[1],pCoords[2], groundZ)
+    local ugroundZ = groundZ - 1.0
+    local posonground = vector3(pCoords[1],pCoords[2], ugroundZ)
    TriggerServerEvent('fmwf:canhazplant', posonground)
 end,false)
 
