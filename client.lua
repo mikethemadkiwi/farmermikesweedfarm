@@ -92,8 +92,8 @@ Citizen.CreateThread(function()
                     end
                     ---                    
                     if MyPlants[j].growPercent <= 1.0 then
-                        local newhieght = MyPlants[j].propPos.z + 0.000001
-                        MyPlants[j].growPercent = MyPlants[j].growPercent + 0.000001
+                        local newhieght = MyPlants[j].propPos.z + 0.0001
+                        MyPlants[j].growPercent = MyPlants[j].growPercent + 0.0001
                         MyPlants[j].propPos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, newhieght)
                     else
 
