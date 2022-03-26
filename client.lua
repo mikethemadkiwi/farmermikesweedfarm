@@ -123,7 +123,9 @@ end)
 
 
 RegisterCommand('plantme', function(source, args) 
-   TriggerServerEvent('fmwf:canhazplant', GetEntityCoords(PlayerPedId()))
+    local pCoords = GetEntityCoords(PlayerPedId())
+    print(pCoords)
+   TriggerServerEvent('fmwf:canhazplant', pCoords)
 end,false)
 
 -- Plant Blips
