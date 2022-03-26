@@ -18,7 +18,7 @@ MyPlants = {
         propHash = 452618762, 
         propPos = vector3(-595.756,-187.858, 35.806),
         genetics = {
-            gender = female
+            gender = "xx"
         },
         growPercent = 0,
         budPercent = 0,
@@ -32,7 +32,7 @@ MyPlants = {
         propHash = -305885281, 
         propPos = vector3(-598.756,-189.858, 35.806),
         genetics = {
-            gender = male
+            gender = "xy"
         },
         growPercent = 0,
         budPercent = 0,
