@@ -142,8 +142,8 @@ end)
 
 RegisterCommand('plantme', function(source, args) 
    local pCoords = GetEntityCoords(PlayerPedId())
-   local sex = math.random(0,1
-   print(sex)
+   local sex = math.random(0,1)
+   Print(sex)
    TriggerServerEvent('fmwf:canhazplant', pCoords, sex)
 end,false)
 
