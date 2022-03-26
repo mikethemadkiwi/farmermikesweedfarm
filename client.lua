@@ -110,7 +110,7 @@ end)
 
 RegisterNetEvent('fmwf:plist')
 AddEventHandler('fmwf:plist', function(plist) 
-    print(plist)   
+print(plist)   
    MyPlants = plist
    for j=1, #MyPlants do
         if MyPlants[j].Obj == nil then
