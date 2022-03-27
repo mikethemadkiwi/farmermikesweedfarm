@@ -26,7 +26,7 @@ function CreatePlant(pSrc, pCoords)
     plant.Toxicity = 0
     --
     table.insert(Plants, plant)
-    TriggerClientEvent('fmwf:plist', -1, Plants) 
+    TriggerClientEvent('fmwf:newplant', -1, plant) 
 end
 
 Citizen.CreateThread(function() -- detect time loop.

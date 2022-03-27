@@ -74,9 +74,9 @@ end)
 ---------------------------------
 AddEventHandler("onResourceStop", function(resourceName)
     if GetCurrentResourceName() == resourceName then
-        -- for j=1, #MyPlants do
-        --     DeleteObject(MyPlants[j].Obj)        
-        -- end
+        for j=1, #PlantList do
+            DeleteObject(PlantObj[PlantList[j].plantid])        
+        end
     end
 end)
 ---------------------------------
@@ -115,12 +115,22 @@ end)
 RegisterNetEvent('fmwf:plist')
 AddEventHandler('fmwf:plist', function(plist)
     PlantList = plist
-    for j=1, #PlantList do
-        if PlantObj[PlantList[j].plantid] == nil then
-            PlantObj[PlantList[j].plantid] = CreateObject(PlantList[j].propHash, PlantList[j].propPos.x, PlantList[j].propPos.y, PlantList[j].propPos.z, false, false, false)
-            SetEntityHeading(PlantObj[PlantList[j].plantid], 0) -- perhaps rando the heading between 0-359
-            FreezeEntityPosition(PlantObj[PlantList[j].plantid], true)
+    for j=1, #plist do
+        if PlantObj[plist[j].plantid] == nil then
+            PlantObj[plist[j].plantid] = CreateObject(plist[j].propHash, plist[j].propPos.x, plist[j].propPos.y, plist[j].propPos.z, false, false, false)
+            SetEntityHeading(PlantObj[plist[j].plantid], 0) -- perhaps rando the heading between 0-359
+            FreezeEntityPosition(PlantObj[plist[j].plantid], true)
         end
+    end
+end)
+
+RegisterNetEvent('fmwf:newplant')
+AddEventHandler('fmwf:newplant', function(plant)
+    table.insert(PlantList, plant)
+    if PlantObj[plant.plantid] == nil then
+        PlantObj[plant.plantid] = CreateObject(plant.propHash, plant.propPos.x, plant.propPos.y, plant.propPos.z, false, false, false)
+        SetEntityHeading(PlantObj[plant.plantid], 0) -- perhaps rando the heading between 0-359
+        FreezeEntityPosition(PlantObj[plant.plantid], true)
     end
 end)
 
