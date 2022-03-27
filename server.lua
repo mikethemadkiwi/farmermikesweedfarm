@@ -43,7 +43,6 @@ Citizen.CreateThread(function() -- detect time loop.
                     Plants[j].propPos = vector3(Plants[j].propPos.x, Plants[j].propPos.y, newhieght)
                 end
                 ---
-            end
         end
     end
 end)
