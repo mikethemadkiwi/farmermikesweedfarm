@@ -1,6 +1,7 @@
 Seeds = {}
 Plants = {}
 plantid = 0
+growthRate = 0.00001
 -----
 function CreatePlant(pSrc, pCoords)
     local plant = {}
