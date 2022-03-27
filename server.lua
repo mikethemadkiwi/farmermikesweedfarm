@@ -35,7 +35,16 @@ end
 Citizen.CreateThread(function() -- detect time loop.
     while true do 
         Citizen.Wait(0)
-
+        for j=1, #Plants do
+                ---                    
+                if Plants[j].growPercent <= 1.0 then
+                    local newhieght = Plants[j].propPos.z + growthRate
+                    Plants[j].growPercent = Plants[j].growPercent + growthRate
+                    Plants[j].propPos = vector3(Plants[j].propPos.x, Plants[j].propPos.y, newhieght)
+                end
+                ---
+            end
+        end
     end
 end)
 
