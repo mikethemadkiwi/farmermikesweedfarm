@@ -17,12 +17,15 @@ function CreatePlant(pSrc, pCoords)
     plantid = plantid + 1 -- increase unique identifier for plants.
     plant.propPos = pCoords
     plant.genetics = {}
+    plant.growthStage = 0
     plant.growPercent = 0
     plant.budPercent = 0
-    plant.N = 0 -- 1 N (+1) > 0.01 Tox
-    plant.P = 0
-    plant.K = 0
-    plant.DeTox = 0 --charcoal,  eggshell, calcium
+    -----
+    plant.Nitrogen = 0 -- 1 N (+1) > 0.01 Tox
+    plant.Phosphorus = 0
+    plant.Potassium = 0
+    plant.Calcium = 0
+    plant.Oxidane = 0
     plant.Toxicity = 0
     --
     table.insert(Plants, plant)
