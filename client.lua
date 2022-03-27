@@ -20,6 +20,7 @@ PlantObj = {}
 MyPlantBlips = {}
 PlantStrain = {}
 FreeRangePlants = {}
+growthRate = 0.00001
 ---------------------------------
 function CreateProp(model, pos)
     local plant = CreateObject(model.propHash, pos.x, pos.y, pos.z, false, false, false)
@@ -96,8 +97,8 @@ Citizen.CreateThread(function()
                     end
                     ---                    
                     if PlantList[j].growPercent <= 1.0 then
-                        local newhieght = PlantList[j].propPos.z + 0.0001
-                        PlantList[j].growPercent = PlantList[j].growPercent + 0.0001
+                        local newhieght = PlantList[j].propPos.z + growthRate
+                        PlantList[j].growPercent = PlantList[j].growPercent + growthRate
                         PlantList[j].propPos = vector3(PlantList[j].propPos.x, PlantList[j].propPos.y, newhieght)
                     else
 
