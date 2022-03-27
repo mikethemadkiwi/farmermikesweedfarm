@@ -92,7 +92,7 @@ Citizen.CreateThread(function()
                     if plantDistance < 2.5 then
                         -- local perc = 
                         local textpos = vector3(PlantList[j].propPos.x, PlantList[j].propPos.y, PlantList[j].propPos.z+1.25)
-                        drawOnScreen3D(textpos, 'Cannabis '..PlantList[j].gender..' Growth: '..math.floor(PlantList[j].growPercent * 100)..'% Type: ['..PlantList[j].propHash..']', 0.5)
+                        drawOnScreen3D(textpos, 'Cannabis ['..PlantList[j].pSrc..'-'..PlantList[j].plantid..'] '..PlantList[j].gender..' Growth: '..math.floor(PlantList[j].growPercent * 100)..'% Type: ['..PlantList[j].propHash..']', 0.5)
                     end
                     ---                    
                     if PlantList[j].growPercent <= 1.0 then
