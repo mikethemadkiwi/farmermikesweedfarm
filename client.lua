@@ -14,6 +14,9 @@ weedObjs.pallet = {propHash = 243282660, propName = prop_weed_pallet}
 weedObjs.bottle = {propHash = 671777952, propName = prop_weed_bottle}
 --
 MyPlants = {}
+--
+PlantList = {}
+PlantObj = {}
 MyPlantBlips = {}
 PlantStrain = {}
 FreeRangePlants = {}
@@ -56,13 +59,14 @@ Citizen.CreateThread(function()
     while true do 
         Citizen.Wait(0)
         if NetworkIsPlayerActive(PlayerId()) then
-            for j=1, #MyPlants do
-                if MyPlants[j].Obj == nil then
-                    MyPlants[j].Obj = CreateObject(MyPlants[j].propHash, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false)
-                    SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
-                    FreezeEntityPosition(MyPlants[j].Obj, true)
-                end
-            end
+            TriggerServerEvent('fmwf:plantlist')
+            -- for j=1, #MyPlants do
+            --     if MyPlants[j].Obj == nil then
+            --         MyPlants[j].Obj = CreateObject(MyPlants[j].propHash, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false)
+            --         SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
+            --         FreezeEntityPosition(MyPlants[j].Obj, true)
+            --     end
+            -- end
         break
         end
     end
@@ -70,9 +74,9 @@ end)
 ---------------------------------
 AddEventHandler("onResourceStop", function(resourceName)
     if GetCurrentResourceName() == resourceName then
-        for j=1, #MyPlants do
-            DeleteObject(MyPlants[j].Obj)        
-        end
+        -- for j=1, #MyPlants do
+        --     DeleteObject(MyPlants[j].Obj)        
+        -- end
     end
 end)
 ---------------------------------
@@ -81,26 +85,26 @@ Citizen.CreateThread(function()
     while true do 
         Citizen.Wait(0)
         if NetworkIsPlayerActive(PlayerId()) then
-            for j=1, #MyPlants do
-                if MyPlants[j].Obj ~= nil then
+            for j=1, #PlantList do
+                if PlantObj[PlantList[j].plantid] ~= nil then
                     ---
-                    local plantDistance = #(GetEntityCoords(PlayerPedId()) - MyPlants[j].propPos)
+                    local plantDistance = #(GetEntityCoords(PlayerPedId()) - PlantList[j].propPos)
                     if plantDistance < 2.5 then
                         -- local perc = 
-                        local textpos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z+1.25)
-                        drawOnScreen3D(textpos, 'Cannabis '..MyPlants[j].gender..' Growth: '..math.floor(MyPlants[j].growPercent * 100)..'% Type: ['..MyPlants[j].propHash..']', 0.5)
+                        local textpos = vector3(PlantList[j].propPos.x, PlantList[j].propPos.y, PlantList[j].propPos.z+1.25)
+                        drawOnScreen3D(textpos, 'Cannabis '..PlantList[j].gender..' Growth: '..math.floor(PlantList[j].growPercent * 100)..'% Type: ['..PlantList[j].propHash..']', 0.5)
                     end
                     ---                    
-                    if MyPlants[j].growPercent <= 1.0 then
-                        local newhieght = MyPlants[j].propPos.z + 0.0001
-                        MyPlants[j].growPercent = MyPlants[j].growPercent + 0.0001
-                        MyPlants[j].propPos = vector3(MyPlants[j].propPos.x, MyPlants[j].propPos.y, newhieght)
+                    if PlantList[j].growPercent <= 1.0 then
+                        local newhieght = PlantList[j].propPos.z + 0.0001
+                        PlantList[j].growPercent = PlantList[j].growPercent + 0.0001
+                        PlantList[j].propPos = vector3(PlantList[j].propPos.x, PlantList[j].propPos.y, newhieght)
                     else
 
                     end
-                    SetEntityCoords(MyPlants[j].Obj, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false, true)
-                    SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
-                    FreezeEntityPosition(MyPlants[j].Obj, true)
+                    SetEntityCoords(PlantObj[PlantList[j].plantid], PlantList[j].propPos.x, PlantList[j].propPos.y, PlantList[j].propPos.z, false, false, false, true)
+                    SetEntityHeading(PlantObj[PlantList[j].plantid], 0) -- perhaps rando the heading between 0-359
+                    FreezeEntityPosition(PlantObj[PlantList[j].plantid], true)
                     ---
                 end
             end	
@@ -109,14 +113,13 @@ Citizen.CreateThread(function()
 end)
 
 RegisterNetEvent('fmwf:plist')
-AddEventHandler('fmwf:plist', function(plist) 
-print(plist)   
-   MyPlants = plist
-   for j=1, #MyPlants do
-        if MyPlants[j].Obj == nil then
-            MyPlants[j].Obj = CreateObject(MyPlants[j].propHash, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false)
-            SetEntityHeading(MyPlants[j].Obj, 0) -- perhaps rando the heading between 0-359
-            FreezeEntityPosition(MyPlants[j].Obj, true)
+AddEventHandler('fmwf:plist', function(plist)
+    PlantList = plist
+    for j=1, #PlantList do
+        if PlantObj[PlantList[j].plantid] == nil then
+            PlantObj[PlantList[j].plantid] = CreateObject(PlantList[j].propHash, PlantList[j].propPos.x, PlantList[j].propPos.y, PlantList[j].propPos.z, false, false, false)
+            SetEntityHeading(PlantObj[PlantList[j].plantid], 0) -- perhaps rando the heading between 0-359
+            FreezeEntityPosition(PlantObj[PlantList[j].plantid], true)
         end
     end
 end)

@@ -1,5 +1,6 @@
 Seeds = {}
 Plants = {}
+plantid = 0
 -----
 function CreatePlant(pSrc, pCoords)
     local plant = {}
@@ -11,6 +12,9 @@ function CreatePlant(pSrc, pCoords)
         plant.propHash = -305885281
         plant.gender = "male"
     end
+    plant.pSrc = pSrc
+    plant.plantid = plantid
+    plantid = plantid + 1 -- increase unique identifier for plants.
     plant.propPos = pCoords
     plant.genetics = {}
     plant.growPercent = 0
@@ -20,7 +24,9 @@ function CreatePlant(pSrc, pCoords)
     plant.K = 0
     plant.DeTox = 0 --charcoal,  eggshell, calcium
     plant.Toxicity = 0
-    return plant
+    --
+    table.insert(Plants, plant)
+    TriggerClientEvent('fmwf:plist', -1, Plants) 
 end
 
 Citizen.CreateThread(function() -- detect time loop.
@@ -38,11 +44,7 @@ AddEventHandler('fmwf:plantlist', function()
 end)
 RegisterServerEvent('fmwf:canhazplant')
 AddEventHandler('fmwf:canhazplant', function(pCoords)
-    -- print(source..' '..pCoords)
-    -- print('does work?')
-    local plant = CreatePlant(source, pCoords)
-    table.insert(Plants, plant)
-    TriggerClientEvent('fmwf:plist', -1, Plants)
+    CreatePlant(source, pCoords)
 end)
 
 ----------------------------------------------------
