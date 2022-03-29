@@ -14,6 +14,7 @@ weedObjs.pallet = {propHash = 243282660, propName = prop_weed_pallet}
 weedObjs.bottle = {propHash = 671777952, propName = prop_weed_bottle}
 --
 MyPlants = {}
+pedGroup = nil
 --
 PlantList = {}
 PlantObj = {}
@@ -21,11 +22,34 @@ MyPlantBlips = {}
 PlantStrain = {}
 FreeRangePlants = {}
 growthRate = 0.00001
+--
+FarmerMike = {}
+FarmerMike.Ped = nil
+FarmerMike.Pos = vector3(2221.670, 5614.625, 54.901)
+FarmerMike.Heading = 103.073
+FarmerMike.Model = GetHashKey('u_m_m_promourn_01')
 ---------------------------------
 function CreateProp(model, pos)
     local plant = CreateObject(model.propHash, pos.x, pos.y, pos.z, false, false, false)
     SetEntityHeading(plant, 0) -- perhaps rando the heading between 0-359
     FreezeEntityPosition(plant, true)
+end
+function CreateFarmerMike()
+    Citizen.CreateThread(function()
+        RequestModel(FarmerMike.Model))	
+        while not HasModelLoaded(FarmerMike.Model) do
+            Wait(1)
+        end
+        FarmerMike.Ped = CreatePed(5, FarmerMike.Model, FarmerMike.Pos.x, FarmerMike.Pos.y, FarmerMike.Pos.z, 0.0, true, false)        
+        SetEntityInvincible(FarmerMike.Ped, true) 
+        SetBlockingOfNonTemporaryEvents(FarmerMike.Ped, false)
+        SetPedCanPlayAmbientAnims(FarmerMike.Ped, true)
+        SetPedRelationshipGroupDefaultHash(FarmerMike.Ped, pedGroup)
+        SetPedRelationshipGroupHash(FarmerMike.Ped, pedGroup)
+        SetCanAttackFriendly(FarmerMike.Ped, false, false)
+        SetPedCombatMovement(FarmerMike.Ped, 0)
+        print('fm spawn:'.. FarmerMike.Ped .. '')
+    end)
 end
 --
 drawOnScreen3D = function(coords, text, size)
@@ -61,6 +85,9 @@ Citizen.CreateThread(function()
         Citizen.Wait(0)
         if NetworkIsPlayerActive(PlayerId()) then
             TriggerServerEvent('fmwf:plantlist')
+            local v, pGroup = AddRelationshipGroup('fmwf')
+            pedGroup = pGroup --  sets the player and the group
+            CreateFarmerMike()
             -- for j=1, #MyPlants do
             --     if MyPlants[j].Obj == nil then
             --         MyPlants[j].Obj = CreateObject(MyPlants[j].propHash, MyPlants[j].propPos.x, MyPlants[j].propPos.y, MyPlants[j].propPos.z, false, false, false)
@@ -76,8 +103,11 @@ end)
 AddEventHandler("onResourceStop", function(resourceName)
     if GetCurrentResourceName() == resourceName then
         for j=1, #PlantList do
-            DeleteObject(PlantObj[PlantList[j].plantid])        
+            DeleteObject(PlantObj[PlantList[j].plantid])  
         end
+        --
+        DeleteEntity(FarmerMike)
+        FarmerMike = nil
     end
 end)
 ---------------------------------
@@ -86,6 +116,10 @@ Citizen.CreateThread(function()
     while true do 
         Citizen.Wait(0)
         if NetworkIsPlayerActive(PlayerId()) then
+            --
+            SetRelationshipBetweenGroups(0, GetHashKey("PLAYER"), pedGroup) -- doesnt this need to be done every tick??
+            SetRelationshipBetweenGroups(0, pedGroup, GetHashKey("PLAYER"))
+            --
             for j=1, #PlantList do
                 if PlantObj[PlantList[j].plantid] ~= nil then
                     ---

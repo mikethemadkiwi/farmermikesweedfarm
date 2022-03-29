@@ -18,10 +18,10 @@ function CreatePlant(pSrc, pCoords)
     plantid = plantid + 1 -- increase unique identifier for plants.
     plant.propPos = pCoords
     plant.genetics = {}
-    plant.growthStage = 0
+    plant.growthStage = 0 -- 0 grow, 1 bud, 2 harvest
     plant.growPercent = 0
     plant.budPercent = 0
-    -----
+    --
     plant.Nitrogen = 0 -- 1 N (+1) > 0.01 Tox
     plant.Phosphorus = 0
     plant.Potassium = 0
@@ -30,6 +30,7 @@ function CreatePlant(pSrc, pCoords)
     plant.Toxicity = 0
     --
     table.insert(Plants, plant)
+    -- Plants[plant.plantid] = plant
     TriggerClientEvent('fmwf:newplant', -1, plant) 
 end
 
