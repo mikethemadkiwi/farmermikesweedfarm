@@ -49,6 +49,7 @@ function CreateFarmerMike()
         SetPedRelationshipGroupHash(FarmerMike.Ped, pedGroup)
         SetCanAttackFriendly(FarmerMike.Ped, false, false)
         SetPedCombatMovement(FarmerMike.Ped, 0)
+        PlaceObjectOnGroundProperly(FarmerMike.Ped)
         print('fm spawn:'.. FarmerMike.Ped .. '')
     end)
 end
