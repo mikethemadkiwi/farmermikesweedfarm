@@ -121,6 +121,10 @@ Citizen.CreateThread(function()
             SetRelationshipBetweenGroups(0, GetHashKey("PLAYER"), pedGroup) -- doesnt this need to be done every tick??
             SetRelationshipBetweenGroups(0, pedGroup, GetHashKey("PLAYER"))
             --
+            if FarmerMike.Ped ~= nil then
+                FreezeEntityPosition(FarmerMike.Ped, true)
+            end
+            --
             for j=1, #PlantList do
                 if PlantObj[PlantList[j].plantid] ~= nil then
                     ---
