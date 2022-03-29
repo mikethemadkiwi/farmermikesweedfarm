@@ -25,7 +25,7 @@ growthRate = 0.00001
 --
 FarmerMike = {}
 FarmerMike.Ped = nil
-FarmerMike.Pos = vector3(2221.670, 5614.625, 54.901)
+FarmerMike.Pos = vector3(2221.670, 5614.625, 53.907)
 FarmerMike.Heading = 103.073
 FarmerMike.Model = GetHashKey('u_m_m_promourn_01')
 ---------------------------------
@@ -49,7 +49,6 @@ function CreateFarmerMike()
         SetPedRelationshipGroupHash(FarmerMike.Ped, pedGroup)
         SetCanAttackFriendly(FarmerMike.Ped, false, false)
         SetPedCombatMovement(FarmerMike.Ped, 0)
-        PlaceObjectOnGroundProperly(FarmerMike.Ped)
         print('fm spawn:'.. FarmerMike.Ped .. '')
     end)
 end
