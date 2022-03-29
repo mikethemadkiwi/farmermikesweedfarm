@@ -42,6 +42,7 @@ function CreateFarmerMike()
         end
         FarmerMike.Ped = CreatePed(5, FarmerMike.Model, FarmerMike.Pos.x, FarmerMike.Pos.y, FarmerMike.Pos.z, 0.0, true, false)        
         SetEntityInvincible(FarmerMike.Ped, true) 
+        SetEntityHeading(FarmerMike.Ped, FarmerMike.Heading)
         SetBlockingOfNonTemporaryEvents(FarmerMike.Ped, false)
         SetPedCanPlayAmbientAnims(FarmerMike.Ped, true)
         SetPedRelationshipGroupDefaultHash(FarmerMike.Ped, pedGroup)
