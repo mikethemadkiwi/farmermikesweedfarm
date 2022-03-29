@@ -107,7 +107,7 @@ AddEventHandler("onResourceStop", function(resourceName)
             DeleteObject(PlantObj[PlantList[j].plantid])  
         end
         --
-        DeleteEntity(FarmerMike)
+        DeleteEntity(FarmerMike.Ped)
         FarmerMike = nil
     end
 end)
