@@ -36,7 +36,7 @@ function CreateProp(model, pos)
 end
 function CreateFarmerMike()
     Citizen.CreateThread(function()
-        RequestModel(FarmerMike.Model))	
+        RequestModel(FarmerMike.Model)	
         while not HasModelLoaded(FarmerMike.Model) do
             Wait(1)
         end
